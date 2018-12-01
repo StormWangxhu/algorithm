@@ -1,4 +1,4 @@
-package me.wangxhu.leedcode.tree;
+package me.wangxhu.leedcode.tree.recursive;
 
 import javafx.util.Pair;
 import me.wangxhu.leedcode.dfs.TreeNode;
