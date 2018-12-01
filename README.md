@@ -9,6 +9,10 @@
 
 **二叉树的中序遍历**
 
+[leetcode94.二叉树的中序遍历](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/description/)
+
+难度级别: 中等
+
 递归实现
 ```java
         public static List<Integer> res;
@@ -63,6 +67,8 @@
 [leetcode101.对称二叉树](https://leetcode-cn.com/problems/symmetric-tree/description/)
 
 [对称二叉树的讲解](https://leetcode-cn.com/articles/symmetric-tree/)
+
+难度级别: 简单
 
 对称二叉树的递归实现
 ```java
@@ -128,6 +134,9 @@ public boolean isSymmetric(TreeNode root) {
 
 [二叉树的最大深度讲解](https://leetcode-cn.com/articles/maximum-depth-of-binary-tree/)
 
+难度级别: 简单
+
+
 求二叉树的最大深度递归实现
 ```java
  public int maxDepth(TreeNode root) {
@@ -167,6 +176,8 @@ public boolean isSymmetric(TreeNode root) {
 **平衡二叉树**
 
 [leetcode110.平衡二叉树 ](https://leetcode-cn.com/problems/balanced-binary-tree/description/)
+
+难度级别: 简单
 
 ```html
     3
@@ -215,7 +226,10 @@ private boolean res = true;
 
 [leetcode110.平衡二叉树](https://leetcode-cn.com/problems/balanced-binary-tree/description/)
 
+难度级别: 简单
+
 平衡二叉树: 平衡树的左右子树的高度差的绝对值小于等于1
+
 平衡二叉树的递归实现
 ```java
         private boolean res = true;
@@ -243,6 +257,8 @@ private boolean res = true;
 [leetcode111.二叉树的最小深度](https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/description/)
 
 二叉树的最小深度递归实现
+
+难度级别: 简单
 
 写法一
 ```java
@@ -286,6 +302,8 @@ private boolean res = true;
 
 [leetcode112.路径的和(判断是否存在路径和等于一个数)](https://leetcode-cn.com/problems/path-sum/description/)
 
+难度级别: 简单
+
 路径总和递归实现
 ```java
         public boolean hasPathSum(TreeNode root, int sum) {
@@ -303,6 +321,8 @@ private boolean res = true;
 **二叉树的前序遍历**
 
 [leetcode144.二叉树的前序遍历](https://leetcode-cn.com/problems/binary-tree-preorder-traversal/description/)
+
+难度级别: 中等
 
 递归实现
 ```java
@@ -355,4 +375,267 @@ private boolean res = true;
             System.out.println();
         }
 ```
+
+**翻转二叉树**
+
+[leetcode226.翻转二叉树](https://leetcode-cn.com/problems/invert-binary-tree/description/)
+
+难度级别:简单
+
+递归实现
+```java
+        public TreeNode invertTree(TreeNode root) {
+            if (root==null){
+                return null;
+            }
+
+            TreeNode left = root.left;
+            root.left = invertTree(root.right);
+            root.right =invertTree(left);
+            return root;
+        }
+```
+
+
+**打家劫舍III**
+
+[leetcode337.打家劫舍III(即间隔遍历)](https://leetcode-cn.com/problems/house-robber-iii/description/)
+
+难度级别: 中等
+
+递归实现
+
+```java
+        public int rob(TreeNode root) {
+
+            if (root == null) {
+                return 0;
+            }
+            int val1 = root.val;
+            if (root.left != null) {
+                val1 += rob(root.left.left) + rob(root.left.right);
+            }
+            if (root.right != null) {
+                val1 += rob(root.right.left) + rob(root.right.right);
+            }
+            int val2 = rob(root.left) + rob(root.right);
+            return Math.max(val1, val2);
+        }
+```
+
+**左叶子之和**
+
+[leetcode404.左叶子之和(即求左子树叶子节点的和)](https://leetcode-cn.com/problems/sum-of-left-leaves/description/)
+
+难度级别: 简单
+
+递归实现
+```java
+        public int sumOfLeftLeaves(TreeNode root) {
+            if (root == null) {
+                return 0;
+            }
+            if (isLeaf(root.left)) {
+                return root.left.val + sumOfLeftLeaves(root.right);
+            }
+
+            return sumOfLeftLeaves(root.left) + sumOfLeftLeaves(root.right);
+        }
+
+        private boolean isLeaf(TreeNode root) {
+            if (root == null) {
+                return false;
+            }
+            return root.left == null && root.right == null;
+        }
+```
+
+**路径总和**
+
+[leetcode437.路径总和(即找出路径和等于给定数值的路径总数)](https://leetcode-cn.com/problems/path-sum-iii/description/)
+
+难度级别: 简单
+
+递归实现
+```java
+        public int pathSum(TreeNode root, int sum) {
+
+            if (root == null) {
+                return 0;
+            }
+            int res = pathSumWithRoot(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
+            return res;
+        }
+
+        private int pathSumWithRoot(TreeNode root, int sum) {
+            if (root == null) {
+                return 0;
+            }
+            int res = 0;
+            if (root.val == sum) {
+                res++;
+            }
+            res += pathSumWithRoot(root.left, sum - root.val) + pathSumWithRoot(root.right, sum - root.val);
+            return res;
+        }
+```
+
+**二叉树的直径**
+
+[leetcode543.二叉树的直径](https://leetcode-cn.com/problems/diameter-of-binary-tree/description/)
+
+难度级别: 简单
+
+递归实现
+```java
+        private int max = 0;
+        public int diameterOfBinaryTree(TreeNode root) {
+            maxDepth(root);
+            return max;
+        }
+
+        private int maxDepth(TreeNode root) {
+            if (root == null) {
+                return 0;
+            }
+            int leftDepth = maxDepth(root.left);
+            int rightDepth = maxDepth(root.right);
+            max = Math.max(max, (leftDepth + rightDepth));
+            return Math.max(leftDepth, rightDepth) + 1;
+        }
+```
+
+**另一个树的子树**
+
+[leetcode572.另一个树的子树(即在一个树中找另个一个树 )](https://leetcode-cn.com/problems/subtree-of-another-tree/description/)
+
+难度级别: 简单
+
+递归实现
+```java
+        public boolean isSubtree(TreeNode s, TreeNode t) {
+
+            if (s == null) {
+                return false;
+            }
+            if (t == null) {
+                return false;
+            }
+            return isSubtreeWithRoot(s, t) || isSubtree(s.left, t) || isSubtree(s.right, t);
+        }
+
+        private boolean isSubtreeWithRoot(TreeNode s, TreeNode t) {
+
+            if (s == null && t == null) {
+                return true;
+            }
+            if (s == null || t == null) {
+                return false;
+            }
+            if (t.val != s.val) {
+                return false;
+            }
+
+            return isSubtreeWithRoot(s.left, t.left) && isSubtreeWithRoot(s.right, t.right);
+        }
+```
+
+**合并两个二叉树**
+
+[leetcode617.合并两个二叉树](https://leetcode-cn.com/problems/merge-two-binary-trees/description/)
+
+难度级别: 简单
+
+递归实现
+```java
+        public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
+            return mergeTwoTrees(t1, t2);
+        }
+
+        private TreeNode mergeTwoTrees(TreeNode t1, TreeNode t2) {
+            if (t1 == null && t2 == null) {
+                return null;
+            }
+            if (t1 == null && t2 != null) {
+                return t2;
+            }
+            if (t1 != null && t2 == null) {
+                return t1;
+            }
+
+            TreeNode root = new TreeNode((t1.val + t2.val));
+            root.left = mergeTwoTrees(t1.left, t2.left);
+            root.right = mergeTwoTrees(t1.right, t2.right);
+            return root;
+        }
+``` 
+
+**求二叉树中的第二小的节点**
+
+[leetcode671.二叉树中的第二小的节点](https://leetcode-cn.com/problems/second-minimum-node-in-a-binary-tree/description/)
+
+难度级别: 简单
+
+递归实现
+```java
+        public int findSecondMinimumValue(TreeNode root) {
+
+            if (root == null) {
+                return -1;
+            }
+            if (root.left == null && root.right == null) {
+                return -1;
+            }
+
+            int leftVal = root.left.val;
+            int rightVal = root.right.val;
+            if (leftVal == root.val) {
+                leftVal = findSecondMinimumValue(root.left);
+            }
+            if (rightVal == root.val) {
+                rightVal = findSecondMinimumValue(root.right);
+            }
+            if (leftVal != -1 && rightVal != -1) {//左右节点都有第二最小值,求最小值
+                return Math.min(leftVal, rightVal);
+            }
+            if (leftVal != -1) {//只有左边有,否则返回右边
+                return leftVal;
+            }
+            return rightVal;
+
+        }
+```
+
+**最长同值路径**
+
+[leetcode687.最长同值路径](https://leetcode-cn.com/problems/longest-univalue-path/description/)
+
+难度级别: 简单
+
+递归实现
+```java
+        private int path = 0;
+
+        public int longestUnivaluePath(TreeNode root) {
+            dfs(root);
+            return path;
+        }
+
+        private int dfs(TreeNode root) {
+            if (root == null) {
+                return 0;
+            }
+            int left = dfs(root.left);
+            int right = dfs(root.right);
+            int leftPath = root.left != null && root.left.val == root.val ? left + 1 : 0;
+            int rightPath = root.right != null && root.right.val == root.val ? right + 1 : 0;
+            path = Math.max(path, (leftPath + rightPath));
+            return Math.max(leftPath, rightPath);
+        }
+```
+
+
+
+
+
 
