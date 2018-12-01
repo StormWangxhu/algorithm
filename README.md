@@ -66,3 +66,67 @@ private boolean res = true;
             return 1 + Math.max(left, right);
         }
 ```
+
+**对称二叉树**
+
+[leetcode101.对称二叉树](https://leetcode-cn.com/problems/symmetric-tree/description/)
+
+[对称二叉树的讲解](https://leetcode-cn.com/articles/symmetric-tree/)
+
+对称二叉树的递归实现
+```java
+  public boolean isSymmetric(TreeNode root) {
+            if (root == null) {
+                return true;
+            }
+            return isSymmetric(root.left, root.right);
+        }
+
+        private boolean isSymmetric(TreeNode t1, TreeNode t2) {
+            if (t1 == null && t2 == null) {
+                return true;
+            }
+            if (t1 == null || t2 == null) {
+                return false;
+            }
+
+            if (t1.val != t2.val) {
+                return false;
+            }
+
+            return isSymmetric(t1.left, t2.right) && isSymmetric(t1.right, t2.left);
+        }
+```
+
+对称二叉树的非递归实现,采用队列数据结构
+
+```java
+public boolean isSymmetric(TreeNode root) {
+
+            Queue<TreeNode> queue = new LinkedList<>();
+            queue.add(root);
+            queue.add(root);
+            while (!queue.isEmpty()) {
+                TreeNode t1 = queue.poll();
+                TreeNode t2 = queue.poll();
+                if (t1 == null && t2 == null) {
+                    continue;
+                }
+                if (t1 == null || t2 == null) {
+                    return false;
+                }
+
+                if (t1.val != t2.val) {
+                    return false;
+                }
+
+                queue.add(t1.left);
+                queue.add(t2.right);
+                queue.add(t1.right);
+                queue.add(t2.left);
+            }
+            return true;
+        }
+```
+
+两种实现方法的时间复杂度为: O(n),空间复杂度: O(n)
