@@ -11,12 +11,39 @@
 
 [leetcode104.二叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/description/)
 
+求二叉树的最大深度递归实现
 ```java
  public int maxDepth(TreeNode root) {
             if (root == null) {
                 return 0;
             }
             return 1+ Math.max(maxDepth(root.left), maxDepth(root.right));
+        }
+```
+
+求二叉树最大深度的非递归实现,用栈来实现,其中用到了Pair<K,V>,键值对映射.在javafx.util.Pair包中,需要导入!
+```java
+ private int depth = 0;
+
+        public int maxDepth(TreeNode root) {
+
+            Queue<Pair<TreeNode, Integer>> stack = new LinkedList<>();
+            if (root != null) {
+                stack.add(new Pair<>(root, 1));
+            }
+
+            int depth = 0;
+            while (!stack.isEmpty()) {
+                Pair<TreeNode, Integer> current = stack.poll();
+                root = current.getKey();
+                int cur_depth = current.getValue();
+                if (root != null) {
+                    depth = Math.max(depth, cur_depth);
+                    stack.add(new Pair<>(root.left, cur_depth + 1));
+                    stack.add(new Pair<>(root.right, cur_depth + 1));
+                }
+            }
+            return depth;
         }
 ```
 
