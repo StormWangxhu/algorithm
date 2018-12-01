@@ -19,3 +19,50 @@
             return 1+ Math.max(maxDepth(root.left), maxDepth(root.right));
         }
 ```
+
+**平衡二叉树**
+
+[leetcode110.平衡二叉树 ](https://leetcode-cn.com/problems/balanced-binary-tree/description/)
+
+```html
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+> true
+
+```html
+       1
+      / \
+     2   2
+    / \
+   3   3
+  / \
+ 4   4
+```
+> false
+
+平衡树左右子树的高度差的绝对值不超过1,即小于等于1
+
+```java
+private boolean res = true;
+
+        public boolean isBalanced(TreeNode root) {
+            maxDepth(root);
+            return res;
+        }
+
+        private int maxDepth(TreeNode root) {
+            if (root == null) {
+                return 0;
+            }
+            int left = maxDepth(root.left);
+            int right = maxDepth(root.right);
+            if (Math.abs((left - right)) > 1) {
+                res = false;
+            }
+            return 1 + Math.max(left, right);
+        }
+```
