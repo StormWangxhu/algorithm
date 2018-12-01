@@ -11,6 +11,8 @@
 
 [leetcode104.二叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/description/)
 
+[二叉树的最大深度讲解](https://leetcode-cn.com/articles/maximum-depth-of-binary-tree/)
+
 求二叉树的最大深度递归实现
 ```java
  public int maxDepth(TreeNode root) {

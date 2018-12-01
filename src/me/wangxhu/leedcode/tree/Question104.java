@@ -58,6 +58,7 @@ public class Question104 {
 
     /**
      * 最大深度的非递归实现
+     * 数据结构:栈来实现
      */
     static class Solution3 {
 
@@ -65,14 +66,15 @@ public class Question104 {
 
         public int maxDepth(TreeNode root) {
 
-            Queue<Pair<TreeNode, Integer>> stack = new LinkedList<>();
+//          Queue<Pair<TreeNode, Integer>> stack = new LinkedList<>(); 这种结构也可以
+            Stack<Pair<TreeNode, Integer>> stack = new Stack<>();
             if (root != null) {
                 stack.add(new Pair<>(root, 1));
             }
 
             int depth = 0;
             while (!stack.isEmpty()) {
-                Pair<TreeNode, Integer> current = stack.poll();
+                Pair<TreeNode, Integer> current = stack.pop();
                 root = current.getKey();
                 int cur_depth = current.getValue();
                 if (root != null) {
