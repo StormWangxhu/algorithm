@@ -1,4 +1,4 @@
-package me.wangxhu.leedcode.tree.level;
+package me.wangxhu.leedcode.tree.bfs;
 
 import me.wangxhu.leedcode.dfs.TreeNode;
 
