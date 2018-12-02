@@ -9,7 +9,7 @@ import me.wangxhu.leedcode.dfs.TreeNode;
  * @description: <p>描述</p>
  * <p>
  * leetcode230 寻找二叉查找树中的第K小的元素
- *
+ * <p>
  * 难度级别: 中等
  */
 public class Question230 {
@@ -40,5 +40,33 @@ public class Question230 {
             }
             inOrder(root.right, k);
         }
+    }
+
+
+    /**
+     * 递归解法
+     */
+    static class Solution2 {
+
+        public int kthSmallest(TreeNode root, int k) {
+
+            int leftCnt = count(root.left);
+            if (leftCnt == k - 1) {
+                return root.val;
+            }
+
+            if (leftCnt > k - 1) {
+                return kthSmallest(root.left, k);
+            }
+            return kthSmallest(root.right, k - leftCnt - 1);
+        }
+
+        private int count(TreeNode node) {
+            if (node == null) {
+                return 0;
+            }
+            return 1 + count(node.left) + count(node.right);
+        }
+
     }
 }
