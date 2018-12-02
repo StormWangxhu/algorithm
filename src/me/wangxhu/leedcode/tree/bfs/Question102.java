@@ -1,7 +1,6 @@
-package me.wangxhu.leedcode.tree.level;
+package me.wangxhu.leedcode.tree.bfs;
 
 import me.wangxhu.leedcode.dfs.TreeNode;
-import org.omg.CORBA.INTERNAL;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
