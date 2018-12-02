@@ -15,7 +15,7 @@ import java.util.Stack;
  * leedcode 144 :求二叉树的前序遍历
  * 难度系数:中等
  * 递归和非递归实现
- *
+ * <p>
  * 前序遍历: 根 左 右
  */
 public class Question144 {
@@ -75,6 +75,32 @@ public class Question144 {
                 }
             }
             System.out.println();
+        }
+    }
+
+
+    /**
+     * 非递归实现二叉树的前序遍历
+     * 数据结构:栈
+     * 写法二
+     */
+    static class Solution3 {
+
+        public List<Integer> preorderTraversal(TreeNode root) {
+
+            List<Integer> list = new ArrayList<>();
+            Stack<TreeNode> stack = new Stack<>();
+            stack.add(root);
+            while (!stack.isEmpty()) {
+                TreeNode node = stack.pop();
+                if (node == null) {
+                    continue;
+                }
+                list.add(node.val);
+                stack.push(node.right);//先右后左,出栈的时候就会是先左后右
+                stack.push(node.left);
+            }
+            return list;
         }
     }
 }
