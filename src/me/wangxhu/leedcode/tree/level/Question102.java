@@ -1,4 +1,4 @@
-package me.wangxhu.leedcode.tree.bfs;
+package me.wangxhu.leedcode.tree.level;
 
 import me.wangxhu.leedcode.dfs.TreeNode;
 import org.omg.CORBA.INTERNAL;
