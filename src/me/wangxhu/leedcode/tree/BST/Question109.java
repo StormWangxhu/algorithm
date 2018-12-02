@@ -29,7 +29,7 @@ public class Question109 {
             }
             ListNode preMid = preMid(head);
             ListNode mid = preMid.next;
-            preMid.next = null;
+            preMid.next = null;//断开链表
             TreeNode root = new TreeNode(mid.val);
             root.left = sortedListToBST(head);
             root.right = sortedListToBST(mid.next);
