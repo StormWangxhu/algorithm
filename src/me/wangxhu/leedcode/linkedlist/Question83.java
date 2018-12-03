@@ -27,14 +27,14 @@ public class Question83 {
 
         public ListNode deleteDuplicates(ListNode head) {
 
-            if (head == null) {
+            if (head == null || head.next == null) {
                 return head;
             }
 
             ListNode pre = head;
             ListNode cur = head.next;
 
-            while (cur != null) {
+            while (pre != null && cur != null) {
                 if (pre.val == cur.val) {
                     pre.next = cur.next;
                 } else {
@@ -47,6 +47,9 @@ public class Question83 {
     }
 
 
+    /**
+     * 递归实现
+     */
     static class Solution1 {
 
         public ListNode deleteDuplicates(ListNode head) {
@@ -59,6 +62,29 @@ public class Question83 {
             return head.val == head.next.val ? head.next : head;
         }
 
+    }
 
+
+    /**
+     * 非递归实现
+     */
+    static class Solution2 {
+
+        public ListNode deleteDuplicates(ListNode head) {
+
+            if (head == null || head.next == null) {
+                return head;
+            }
+
+            ListNode cur = head;
+            while (cur != null && cur.next != null) {
+                if (cur.val == cur.next.val) {
+                    cur.next = cur.next.next;
+                } else {
+                    cur = cur.next;
+                }
+            }
+            return head;
+        }
     }
 }
