@@ -1,6 +1,7 @@
-## leetcode_database题解
+# leetcode_database题解
 
-* [595. 大的国家](#595-big-countries)
+* [595. 大的国家](#595大的国家)
+* [183.从不订购的客户](#183从不订购的客户)
 
 
 # 595. 大的国家
@@ -57,3 +58,79 @@ WHERE
     W.area>3000000
     OR W.population>25000000;
 ```
+
+# 183.从不订购的客户
+
+https://leetcode-cn.com/problems/customers-who-never-order/description/
+
+##  描述
+
+
+Curstomers 表：
+
+```html
++----+-------+
+| Id | Name  |
++----+-------+
+| 1  | Joe   |
+| 2  | Henry |
+| 3  | Sam   |
+| 4  | Max   |
++----+-------+
+```
+
+Orders 表：
+
+```html
++----+------------+
+| Id | CustomerId |
++----+------------+
+| 1  | 3          |
+| 2  | 1          |
++----+------------+
+```
+
+查找没有订单的顾客信息：
+
+```html
++-----------+
+| Customers |
++-----------+
+| Henry     |
+| Max       |
++-----------+
+```
+
+## SQL Schema
+
+```sql
+DROP TABLE
+IF
+    EXISTS Customers;
+CREATE TABLE Customers ( Id INT, NAME VARCHAR ( 255 ) );
+DROP TABLE
+IF
+    EXISTS Orders;
+CREATE TABLE Orders ( Id INT, CustomerId INT );
+INSERT INTO Customers ( Id, NAME )
+VALUES
+    ( 1, 'Joe' ),
+    ( 2, 'Henry' ),
+    ( 3, 'Sam' ),
+    ( 4, 'Max' );
+INSERT INTO Orders ( Id, CustomerId )
+VALUES
+    ( 1, 3 ),
+    ( 2, 1 );
+```
+
+## Solution
+```sql
+SELECT
+    Name AS Customers
+FROM
+    Customers
+WHERE
+    Id NOT IN ( SELECT CustomerId FROM Orders );
+```
+
