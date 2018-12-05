@@ -4,6 +4,7 @@
 * [183.从不订购的客户](#183从不订购的客户)
 * [182.查找重复的电子邮箱](#182查找重复的电子邮箱)
 * [596.超过5名学生的课](#超过5名学生的课)
+* [620.有趣的电影](#有趣的电影)
 
 
 # 595. 大的国家
@@ -152,6 +153,41 @@ GROUP BY
 HAVING 
     COUNT(Email)>1;
 ```
+
+# 620.有趣的电影
+
+https://leetcode-cn.com/problems/not-boring-movies/description/
+
+## Solution
+本题常规思路,使用ORDER BY 字段 ASC/DESC;进行升许和降序
+方法一:229ms
+```sql
+SELECT 
+    id,
+    movie,
+    description,
+    rating
+FROM
+    cinema
+WHERE 
+    id % 2 =1
+    AND description != 'boring'
+ORDER BY
+    rating DESC;
+```
+方法二: 242ms
+```sql
+SELECT
+    *
+FROM
+    cinema
+WHERE
+    id % 2 = 1
+    AND description != 'boring'
+ORDER BY
+    rating DESC;
+```
+
 # 596.超过5名学生的课
 
 https://leetcode-cn.com/problems/classes-more-than-5-students/description/
