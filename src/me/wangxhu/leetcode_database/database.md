@@ -118,6 +118,30 @@ BEGIN
   );
 END
 ```
+
+# 178.分数排名
+
+https://leetcode-cn.com/problems/rank-scores/description/
+
+## Solution
+
+使用内联
+
+```sql
+SELECT
+    S1.score,
+    COUNT(DISTINCT S2.score) Rank
+FROM
+    Scores S1
+    INNER JOIN Scores S2
+    ON S1.score<=S2.score
+GROUP BY
+    S1.id
+ORDER BY
+    S1.SCORE DESC ;
+```
+
+
 # 181.超过经理收入的员工
 
 https://leetcode-cn.com/problems/employees-earning-more-than-their-managers/description/
