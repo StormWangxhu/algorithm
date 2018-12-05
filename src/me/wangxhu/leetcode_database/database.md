@@ -8,6 +8,7 @@
 * [620.有趣的电影](#620有趣的电影)
 * [627.交换工资](#627交换工资)
 * [181.超过经理收入的员工](#181超过经理收入的员工)
+* [176.第二高的薪水](#176.第二高的薪水)
 
 
 # 595. 大的国家
@@ -65,6 +66,29 @@ WHERE
     OR W.population>25000000;
 ```
 
+# 176.第二高的薪水
+
+https://leetcode-cn.com/problems/second-highest-salary/description/
+
+## Solution
+
+此处注意使用LIMIT X,Y 来限制最终返回结果
+
+X:从第几个开始
+
+Y:一共返回几行
+
+
+为了在没有查找到数据时返回 null，需要在查询结果外面再套一层 SELECT。
+
+```sql
+SELECT
+    ( SELECT DISTINCT Salary 
+    FROM Employee 
+    ORDER BY Salary 
+    DESC LIMIT 1, 1 ) 
+    SecondHighestSalary;
+``` 
 # 181.超过经理收入的员工
 
 https://leetcode-cn.com/problems/employees-earning-more-than-their-managers/description/
