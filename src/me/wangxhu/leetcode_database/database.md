@@ -2,6 +2,7 @@
 
 * [595. 大的国家](#595大的国家)
 * [183.从不订购的客户](#183从不订购的客户)
+* [596.超过5名学生的课](#超过5名学生的课)
 
 
 # 595. 大的国家
@@ -132,5 +133,33 @@ FROM
     Customers
 WHERE
     Id NOT IN ( SELECT CustomerId FROM Orders );
+```
+
+# 596.超过5名学生的课
+
+https://leetcode-cn.com/problems/classes-more-than-5-students/description/
+
+## Solution
+按照课程分类,然后再判断大于等于5的学生数
+```sql
+SELECT
+    c.class
+FROM
+    courses c
+GROUP BY
+    class 
+HAVING
+    COUNT(DISTINCT student)>=5;
+```
+
+模板:
+```sql
+GROUP BY 字段 HAVING 条件判断;
+说明: 
+GROUP BY 字段  即按该字段进行分组,将相同的分在一起
+HAVING 过滤分组
+WHERE 过滤行
+DISTINCT  用来过滤掉多余的重复的记录只保留一条,即只返回不重复记录的条数.
+
 ```
 
