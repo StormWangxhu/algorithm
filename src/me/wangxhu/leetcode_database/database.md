@@ -2,6 +2,7 @@
 
 * [595. 大的国家](#595大的国家)
 * [183.从不订购的客户](#183从不订购的客户)
+* [182.查找重复的电子邮箱](#182查找重复的电子邮箱)
 * [596.超过5名学生的课](#超过5名学生的课)
 
 
@@ -135,6 +136,22 @@ WHERE
     Id NOT IN ( SELECT CustomerId FROM Orders );
 ```
 
+# 182.查找重复的电子邮箱
+
+https://leetcode-cn.com/problems/duplicate-emails/description/
+
+## Solution
+按邮件字段进行分组,然后聚合查询邮件的数量大于1的个数,这个和596题有点儿像.
+```sql
+SELECT 
+    Email
+FROM
+    Person
+GROUP BY
+   Email
+HAVING 
+    COUNT(Email)>1;
+```
 # 596.超过5名学生的课
 
 https://leetcode-cn.com/problems/classes-more-than-5-students/description/
