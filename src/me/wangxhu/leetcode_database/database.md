@@ -3,6 +3,7 @@
 * [595. 大的国家](#595大的国家)
 * [183.从不订购的客户](#183从不订购的客户)
 * [182.查找重复的电子邮箱](#182查找重复的电子邮箱)
+* [197.上升的温度](#197上升的温度)
 * [596.超过5名学生的课](#596超过5名学生的课)
 * [620.有趣的电影](#620有趣的电影)
 
@@ -187,6 +188,24 @@ WHERE
     AND description != 'boring'
 ORDER BY
     rating DESC;
+```
+
+# 197.上升的温度
+
+https://leetcode-cn.com/problems/rising-temperature/description/
+
+DATEDIFF()函数可以计算两个日期之差
+
+```sql
+SELECT
+    w1.Id 
+FROM
+    weather w1
+INNER JOIN
+    weather w2 
+ON
+    w1.Temperature > w2.Temperature 
+    AND DATEDIFF(w1.RecordDate, w2.RecordDate) = 1;
 ```
 
 # 596.超过5名学生的课
