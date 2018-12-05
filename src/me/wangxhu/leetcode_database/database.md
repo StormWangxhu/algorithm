@@ -7,6 +7,7 @@
 * [596.超过5名学生的课](#596超过5名学生的课)
 * [620.有趣的电影](#620有趣的电影)
 * [627.交换工资](#627交换工资)
+* [181.超过经理收入的员工](#181超过经理收入的员工)
 
 
 # 595. 大的国家
@@ -62,6 +63,22 @@ FROM
 WHERE
     W.area>3000000
     OR W.population>25000000;
+```
+
+# 181.超过经理收入的员工
+
+https://leetcode-cn.com/problems/employees-earning-more-than-their-managers/description/
+
+484ms
+
+```sql
+SELECT
+    E1.NAME AS Employee
+FROM
+    Employee E1
+    INNER JOIN Employee E2
+    ON E1.ManagerId = E2.Id
+    AND E1.Salary > E2.Salary;
 ```
 
 # 183.从不订购的客户
