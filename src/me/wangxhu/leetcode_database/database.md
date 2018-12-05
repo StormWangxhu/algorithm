@@ -23,6 +23,7 @@
 
 * [185.部门工资前三高的员工](#185部门工资前三高的员工)
 * [262.行程和用户](#262行程和用户)
+* [601.体育馆的人流量](#601体育馆的人流量)
 
 
 # 595. 大的国家
@@ -619,6 +620,46 @@ WHERE
     AND s4.id = ( SELECT max( s5.id ) FROM seat s5 )
 ORDER BY
     id;
+
+```
+
+# 601.体育馆的人流量
+
+https://leetcode-cn.com/problems/human-traffic-of-stadium/description/
+
+## Solution
+
+ 448ms
+ 
+```sql
+SELECT DISTINCT s1.*
+FROM stadium s1, stadium s2, stadium s3 
+WHERE s1.people >= 100 AND s2.people >= 100 AND s3.people >= 100  
+AND ( (s1.id - s2.id =1 AND s2.id - s3.id =1 )  
+OR (s2.id - s1.id = 1 AND s1.id - s3.id =1)
+OR (s3.id - s2.id = 1 AND s2.id - s1.id = 1)  )
+ORDER BY s1.id;
+
+```
+467ms
+
+```sql
+select 
+    distinct s1.id, s1.date, s1.people
+from 
+    stadium s1,
+    stadium s2,
+    stadium s3
+where
+    s1.people >= 100 
+    and s2.people >= 100
+    and s3.people >= 100
+    and (
+        (s1.id = s2.id - 1 and s1.id = s3.id - 2)
+        or (s1.id = s2.id + 1 and s1.id = s3.id - 1)
+        or (s1.id = s2.id + 2 and s1.id = s3.id + 1)
+    )
+order by s1.id;
 
 ```
 
