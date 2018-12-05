@@ -1,4 +1,5 @@
 # leetcode_database题解
+## 简单
 
 * [595. 大的国家](#595大的国家)
 * [183.从不订购的客户](#183从不订购的客户)
@@ -10,6 +11,11 @@
 * [181.超过经理收入的员工](#181超过经理收入的员工)
 * [176.第二高的薪水](#176第二高的薪水)
 
+## 中等
+
+* [177.第N高的薪水](#177.第N高的薪水)
+
+## 难
 
 # 595. 大的国家
 
@@ -89,6 +95,28 @@ SELECT
     DESC LIMIT 1, 1 ) 
     SecondHighestSalary;
 ``` 
+
+# 177.第N高的薪水
+
+https://leetcode-cn.com/problems/nth-highest-salary/description/
+
+## Solution
+同176
+
+```sql
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+
+BEGIN
+
+   SET
+    N=N-1;
+  RETURN (
+      # Write your MySQL query statement below.
+      SELECT ( SELECT DISTINCT Salary FROM Employee ORDER BY Salary DESC LIMIT N, 1 )
+      
+  );
+END
+```
 # 181.超过经理收入的员工
 
 https://leetcode-cn.com/problems/employees-earning-more-than-their-managers/description/
