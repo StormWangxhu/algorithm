@@ -16,6 +16,7 @@
 * [177.第N高的薪水](#177第N高的薪水)
 * [178.分数排名](#178分数排名)
 * [184.部门工资最高的员工](#184部门工资最高的员工)
+* [180.连续出现的数字](#180连续出现的数字)
 
 ## 难
 
@@ -143,6 +144,72 @@ ORDER BY
 ```
 
 
+# 180.连续出现的数字
+
+https://leetcode-cn.com/problems/consecutive-numbers/description/
+
+## Solution
+
+1341ms
+
+```sql
+SELECT
+    DISTINCT L1.num ConsecutiveNums
+FROM
+    Logs L1,
+    Logs L2,
+    Logs L3
+WHERE L1.id = l2.id - 1
+    AND L2.id = L3.id - 1
+    AND L1.num = L2.num
+    AND l2.num = l3.num;
+```
+
+1327ms
+
+```sql
+SELECT distinct l3.num as ConsecutiveNums 
+FROM logs l1
+
+LEFT JOIN logs l2
+on l1.id + 1 = l2.id
+
+left join logs l3
+on l1.id + 2 = l3.id
+
+WHERE l1.num = l2.num and l2.num = l3.num and l1.num = l3.num
+```
+
+691ms
+
+```sql
+select
+    distinct l1.Num as ConsecutiveNums
+from Logs l1, Logs l2, Logs l3
+where l1.Id = l2.Id-1 and l2.Id=l3.Id-1
+and l1.Num=l2.Num and l2.Num=l3.Num
+```
+
+429ms
+
+```sql
+select distinct Num as ConsecutiveNums from (
+	select Num, @count :=if(@pre = Num, @count + 1, 1) count, @pre := Num
+	from Logs, (select @count := 0, @pre := null) init
+) t where t.count >= 3 
+```
+
+237ms
+
+```sql
+SELECT distinct num as ConsecutiveNums FROM(
+SELECT id, num, 
+@pre := @cur,
+@cur := num,
+@rep_ct := IF(@pre = @cur, @rep_ct + 1, 1) as rep_ct
+FROM `Logs` l, (SELECT @pre := null, @cur := 0, @rep_ct := 1) init
+) temp WHERE rep_ct >= 3
+```
 # 181.超过经理收入的员工
 
 https://leetcode-cn.com/problems/employees-earning-more-than-their-managers/description/
@@ -380,6 +447,71 @@ GROUP BY 字段  即按该字段进行分组,将相同的分在一起
 HAVING 过滤分组
 WHERE 过滤行
 DISTINCT  用来过滤掉多余的重复的记录只保留一条,即只返回不重复记录的条数.
+
+```
+
+# 626.换座位
+
+## Solution
+
+256ms
+
+```sql
+SELECT
+	(CASE
+		WHEN MOD(id,2) != 0 AND counts !=id THEN id+1
+		WHEN MOD(id,2) !=0 AND counts =id THEN id
+		ELSE id-1
+	END) AS id,
+	student
+FROM
+	seat,
+	(SELECT COUNT(*) AS counts
+	FROM
+		seat) AS seat_counts
+ORDER BY id ASC;
+```
+295ms
+
+```sql
+select 
+case
+    when id = (select case when count( * )%2 = 1 then count( * ) 
+                else null end from seat)
+    then id
+    else
+        case when id%2 = 0 then (id-1) 
+             else (id+1) end 
+end as id, student from seat order by id
+```
+450ms
+
+```sql
+SELECT
+    s1.id - 1 AS id,
+    s1.student
+FROM
+    seat s1
+WHERE
+    s1.id MOD 2 = 0 UNION
+SELECT
+    s2.id + 1 AS id,
+    s2.student
+FROM
+    seat s2
+WHERE
+    s2.id MOD 2 = 1
+    AND s2.id != ( SELECT max( s3.id ) FROM seat s3 ) UNION
+SELECT
+    s4.id AS id,
+    s4.student
+FROM
+    seat s4
+WHERE
+    s4.id MOD 2 = 1
+    AND s4.id = ( SELECT max( s5.id ) FROM seat s5 )
+ORDER BY
+    id;
 
 ```
 
