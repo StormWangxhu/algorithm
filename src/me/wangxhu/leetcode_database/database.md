@@ -21,6 +21,10 @@
 
 ## 难
 
+* [185.部门工资前三高的员工](#185部门工资前三高的员工)
+* [262.行程和用户](#262行程和用户)
+
+
 # 595. 大的国家
 
 https://leetcode-cn.com/problems/big-countries/description/
@@ -341,6 +345,50 @@ WHERE
     AND E.Salary = M.Salary;
 ```
 
+# 185.部门工资前三高的员工
+
+https://leetcode-cn.com/problems/department-top-three-salaries/description/
+
+## Solution
+
+1452ms
+
+```sql
+SELECT D1.Name Department, E1.Name Employee,  E1.Salary
+FROM Employee E1, Employee E2, Department D1
+WHERE E1.DepartmentID = E2.DepartmentID
+AND E2.Salary >= E1.Salary 
+AND E1.DepartmentID = D1.ID      
+GROUP BY E1.Name
+HAVING COUNT(DISTINCT E2.Salary) <= 3
+ORDER BY D1.Name, E1.Salary DESC;
+
+```
+
+672ms
+
+```sql
+Select 
+       dep.Name as Department, emp.Name as Employee, emp.Salary 
+from 
+     Department dep, 
+     Employee emp 
+where 
+      emp.DepartmentId=dep.Id 
+      and 
+    (Select count(distinct Salary) From Employee where DepartmentId=dep.Id and Salary>emp.Salary)<3
+```
+
+617ms
+
+```sql
+select B.Name as Department, A.Name as Employee, A.Salary
+from Employee A, Department B
+where A.DepartmentId = B.Id 
+    and 3>(select count(distinct Salary) from Employee 
+                    where DepartmentId=B.Id and Salary>A.Salary)
+order by B.Name asc, A.Salary desc
+```
 
 # 620.有趣的电影
 
@@ -449,6 +497,62 @@ HAVING 过滤分组
 WHERE 过滤行
 DISTINCT  用来过滤掉多余的重复的记录只保留一条,即只返回不重复记录的条数.
 
+```
+
+# 262.行程和用户
+
+https://leetcode-cn.com/problems/trips-and-users/description/
+
+## Solution
+
+302ms
+
+```sql
+select request_at as Day, ROUND(sum((case when t.Status !='completed' then 1 else 0 end))/count(*),2) 
+    as 'Cancellation Rate'
+    from Trips t inner join Users u 
+    on u.Users_Id =t.Client_Id 
+    and u.banned='no'
+    and (request_at between '2013-10-01' and '2013-10-03')
+    group by Day;
+            
+```
+
+211ms
+
+```sql
+select t.Request_at Day, round(
+    sum(case  when t.Status like "cancelled%" then 1 else 0 end)/(count(1)),2)
+ "Cancellation Rate"
+from Trips  t
+inner join Users u
+on u.Users_Id = t.Client_Id  and u.Banned = "No"
+where t.Request_at between "2013-10-01" and "2013-10-03" group by t.Request_at
+order by to_days(t.Request_at) asc
+```
+
+227ms
+
+```sql
+select Request_at Day, convert(sum(if(Status<>'completed', 1,0))/count(*),decimal(10,2)) as 'Cancellation Rate'
+from Trips
+where Client_Id in (select Users_Id from Users where Banned = 'no' and Role = 'client')
+and Driver_Id in (select Users_Id from Users where Banned = 'no' and Role = 'driver')
+and Request_at >= '2013-10-01'
+and Request_at <= '2013-10-03'
+group by Request_at
+```
+
+359ms
+
+```sql
+select Request_at Day, convert(sum(if(Status<>'completed', 1,0))/count(*),decimal(10,2)) as 'Cancellation Rate'
+from Trips
+where Client_Id in (select Users_Id from Users where Banned = 'no' and Role = 'client')
+and Driver_Id in (select Users_Id from Users where Banned = 'no' and Role = 'driver')
+and Request_at >= '2013-10-01'
+and Request_at <= '2013-10-03'
+group by Request_at
 ```
 
 # 626.换座位
