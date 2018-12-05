@@ -14,6 +14,7 @@
 ## 中等
 
 * [177.第N高的薪水](#177第N高的薪水)
+* [184.部门工资最高的员工](#184部门工资最高的员工)
 
 ## 难
 
@@ -224,6 +225,29 @@ GROUP BY
 HAVING 
     COUNT(Email)>1;
 ```
+
+
+# 184.部门工资最高的员工
+
+https://leetcode-cn.com/problems/department-highest-salary/description/
+
+## Solution
+
+```sql
+SELECT 
+    D.NAME Department,
+    E.NAME Employee,
+    E.Salary
+FROM
+    Employee E,
+    Department D,
+    (SELECT DepartmentId ,MAX(Salary) Salary FROM Employee GROUP BY DepartmentId ) M
+WHERE 
+    E.DepartmentId = D.Id
+    AND E.DepartmentId = M.DepartmentId 
+    AND E.Salary = M.Salary;
+```
+
 
 # 620.有趣的电影
 
