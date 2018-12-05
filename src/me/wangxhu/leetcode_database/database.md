@@ -6,6 +6,7 @@
 * [197.上升的温度](#197上升的温度)
 * [596.超过5名学生的课](#596超过5名学生的课)
 * [620.有趣的电影](#620有趣的电影)
+* [627.交换工资](#627交换工资)
 
 
 # 595. 大的国家
@@ -190,11 +191,39 @@ ORDER BY
     rating DESC;
 ```
 
+# 627.交换工资
+
+https://leetcode-cn.com/problems/swap-salary/description/
+
+## Solution
+
+case when then else end语句
+
+```sql
+UPDATE
+    salary
+SET
+    sex =(CASE WHEN sex='m' THEN 'f' ELSE 'm' END);
+```
+
+if(expr1,expr2,expr3)语句
+
+expr1:判断条件
+
+ecpr2,3是expr1的自定义条件
+```sql
+UPDATE
+    salary 
+SET 
+    sex = if(sex = 'm', 'f','m');
+```
+
 # 197.上升的温度
 
 https://leetcode-cn.com/problems/rising-temperature/description/
 
 DATEDIFF()函数可以计算两个日期之差
+ 498ms
 
 ```sql
 SELECT
