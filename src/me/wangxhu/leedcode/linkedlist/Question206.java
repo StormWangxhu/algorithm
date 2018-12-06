@@ -1,7 +1,7 @@
 package me.wangxhu.leedcode.linkedlist;
 
+import me.wangxhu.leedcode.dfs.DoubleNode;
 import me.wangxhu.leedcode.dfs.ListNode;
-import org.omg.PortableServer.LIFESPAN_POLICY_ID;
 
 /**
  * <p>Created on 18-12-6</p>
@@ -31,6 +31,31 @@ public class Question206 {
                 head.next = pre; //头结点指针指向前一个节点
                 pre = head; //pre指针向后移
                 head = next; //头结点从新定义
+            }
+            return pre;
+        }
+    }
+
+
+    /**
+     * 反转双向链表
+     */
+    static class Solution1 {
+
+        public DoubleNode reverseList(DoubleNode head) {
+
+            if (head == null) {
+                return head;
+            }
+
+            DoubleNode pre = null;
+            DoubleNode next = null;
+            while (head != null) {
+                next = head.next;
+                head.next = pre;
+                head.last = next;
+                pre = head;
+                head = next;
             }
             return pre;
         }
