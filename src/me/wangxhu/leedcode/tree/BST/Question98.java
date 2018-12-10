@@ -14,7 +14,7 @@ import me.wangxhu.leedcode.dfs.TreeNode;
  */
 public class Question98 {
 
-    static class Range{
+    static class Range {
         long low, high;
     }
 
@@ -50,4 +50,25 @@ public class Question98 {
         }
     }
 
+
+    /**
+     *
+     */
+    static class Solution1 {
+
+        public boolean isValidBST(TreeNode root) {
+            return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
+        }
+
+        private boolean isValidBST(TreeNode root, long minValue, long maxValue) {
+            if (root == null) {
+                return true;
+            }
+            if (root.val <= minValue || root.val >= maxValue) {
+                return false;
+            }
+            return isValidBST(root.left, minValue, root.val) && isValidBST(root.right, root.val, maxValue);
+
+        }
+    }
 }
