@@ -36,4 +36,39 @@ public class Question110 {
             return 1 + Math.max(left, right);
         }
     }
+
+
+    /**
+     * 第二种写法
+     */
+    static class Solution1 {
+        public boolean isBalanced(TreeNode root) {
+            if(root == null) {
+                return true;
+            }
+            boolean flag = true;
+
+            flag = isBalanced(root.left);
+            if(flag) {
+                flag = isBalanced(root.right);
+            }
+
+            if(flag) {
+                flag = Math.abs(height(root.left) - height(root.right)) <= 1;
+            }
+
+            return flag;
+        }
+
+        private int height(TreeNode root) {
+            if(root == null) {
+                return 0;
+            }
+
+            int left = height(root.left);
+            int right = height(root.right);
+
+            return Math.max(left, right) + 1;
+        }
+    }
 }
