@@ -1,5 +1,7 @@
 package me.wangxhu.leedcode.string;
 
+import java.util.Stack;
+
 /**
  * <p>Created on 18-12-17</p>
  *
@@ -10,6 +12,9 @@ package me.wangxhu.leedcode.string;
  */
 public class Question344 {
 
+    /**
+     * 用双针针来实现
+     */
     static class Solution {
 
         public String revertString(String s) {
@@ -27,6 +32,28 @@ public class Question344 {
             }
 
             return String.valueOf(arr);
+        }
+    }
+
+
+    /**
+     * 用栈来实现反转
+     */
+    static class Solution1 {
+
+        public String revertString(String s) {
+
+            char[] arr = s.toCharArray();
+            char[] newChars = new char[arr.length];
+            Stack<Character> stack = new Stack<>();
+            for (Character character : arr) {
+                stack.push(character);
+            }
+            int index = 0;
+            while (!stack.isEmpty()) {
+                newChars[index++] = stack.pop();
+            }
+            return String.valueOf(newChars);
         }
     }
 }
