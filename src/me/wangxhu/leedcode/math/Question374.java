@@ -31,5 +31,14 @@ public class Question374 {
             }
 
         }
+
+        /**
+         * 为了不报错误
+         * @param mid
+         * @return
+         */
+        private int guess(int mid) {
+            return 0;
+        }
     }
 }
