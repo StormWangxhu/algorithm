@@ -40,5 +40,6 @@ public class Question374 {
         private int guess(int mid) {
             return 0;
         }
+
     }
 }
