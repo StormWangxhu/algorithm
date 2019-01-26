@@ -1,6 +1,6 @@
 package me.wangxhu.demo_zuochengzuo.linkedlist;
 
-import me.wangxhu.demo_zuochengzuo.ListNode;
+import me.wangxhu.demo_zuochengzuo.common.ListNode;
 
 /**
  * @Author: StormWangxhu

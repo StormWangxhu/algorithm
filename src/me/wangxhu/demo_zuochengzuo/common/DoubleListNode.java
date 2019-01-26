@@ -1,4 +1,4 @@
-package me.wangxhu.demo_zuochengzuo;
+package me.wangxhu.demo_zuochengzuo.common;
 
 /**
  * @Author: StormWangxhu
