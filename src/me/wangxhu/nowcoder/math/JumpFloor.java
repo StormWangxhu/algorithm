@@ -55,6 +55,8 @@ public class JumpFloor {
     /**
      * 和只与前两个数有关
      * 17ms
+     *
+     * 解法三：不需要额外的数组来存放元素
      */
     static class Solution3 {
 
