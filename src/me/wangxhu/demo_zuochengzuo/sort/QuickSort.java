@@ -6,13 +6,17 @@ import org.omg.PortableInterceptor.INACTIVE;
  * @Author: StormWangxhu
  * @Time: 2019-03-02 18:16
  * @Email: StormWangxhu@163.com
- * @Description: 快速排序
+ * @Description: 快速排序 和 随机快速排序
+ * 时间复杂度： O（N * log N）
+ * 很重要！！！！！
  */
 public class QuickSort {
 
     static class Solution {
 
         public static void quickSort(int[] arr, int L, int R) {
+
+            swap(arr,L+(int) (Math.random()*(R-L+1)),R);//这行就是随机快速排序
 
             //在L<R条件下进行，不满足直接返回
             if (L < R) {
