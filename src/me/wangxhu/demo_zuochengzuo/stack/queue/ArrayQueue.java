@@ -25,6 +25,7 @@ public class ArrayQueue {
         size = 0;
     }
 
+
     public void push(int num) {
         if (size == array.length) {
             throw new RuntimeException("The queue is full");
