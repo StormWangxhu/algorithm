@@ -7,7 +7,7 @@ import org.omg.PortableInterceptor.INACTIVE;
  * @Time: 2019-03-02 12:21
  * @Email: StormWangxhu@163.com
  * @Description: 归并排序
- * 时间复杂度： N * O(logN)
+ * 时间复杂度： O(n * logN)
  * 空间复杂度： O（N）
  */
 public class MergeSort {
