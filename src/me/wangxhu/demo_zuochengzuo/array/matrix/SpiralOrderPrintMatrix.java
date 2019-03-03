@@ -17,7 +17,7 @@ public class SpiralOrderPrintMatrix {
         int dR = matrix.length - 1;
         int dC = matrix[0].length - 1;
         while (tR <= dR && tC <= dC) {
-            printEdge(matrix, tR++, tC++, dR--, dC--);
+            printEdge(matrix, tR++, tC++, dR--, dC--);//每一次循环为矩阵的一圈，即最外圈，倒数第二圈，即这个循环是控制圈的
         }
 
     }
