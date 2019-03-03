@@ -1,4 +1,4 @@
-package me.wangxhu.demo_zuochengzuo.stack.queue;
+package me.wangxhu.demo_zuochengzuo.stack;
 
 /**
  * @Author: StormWangxhu
