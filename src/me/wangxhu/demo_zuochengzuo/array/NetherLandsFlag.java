@@ -18,7 +18,7 @@ public class NetherLandsFlag {
             int more = R + 1;//右边部分，即大于等于最左一个数索引
             int current = L;//遍历指针
 
-            while (current < more) {  //注意跳出条件
+            while (current < more) {  //注意跳出条件  current != more
                 if (arr[current] < num) {
                     swap(arr, ++less, current++);//++less：表示less位置的下一个位置元素索引
                 } else if (arr[current] > num) {
