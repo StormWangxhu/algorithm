@@ -11,7 +11,7 @@ import java.util.Stack;
  * 1.当前节点不为空，将其压入栈，节点向左走
  * 2.当前节点为空，从栈中拿出一个打印，节点向右走
  */
-public class PosOrderUnRecur {
+public class InOrderUnRecur {
 
     public static void posOrderUnRecur(TreeNode head) {
 
