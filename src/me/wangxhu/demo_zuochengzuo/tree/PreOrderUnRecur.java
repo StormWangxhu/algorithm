@@ -8,7 +8,7 @@ import java.util.Stack;
  * @Email: StormWangxhu@163.com
  * @Description: 先序非递归实现 栈来实现
  */
-public class InOrderUnRecur {
+public class PreOrderUnRecur {
 
     public static void preOrderUnRecur(TreeNode head) {
 
