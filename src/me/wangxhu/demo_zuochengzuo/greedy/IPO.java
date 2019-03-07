@@ -29,7 +29,7 @@ public class IPO {
     public static class MinCostComparator implements Comparator<Node> {
         @Override
         public int compare(Node o1, Node o2) {
-            return o1.c - o2.c;//o1写在前是降序
+            return o1.c - o2.c;//o1写在前是升序
         }
     }
 
@@ -39,7 +39,7 @@ public class IPO {
     public static class MaxProfitComparator implements Comparator<Node> {
         @Override
         public int compare(Node o1, Node o2) {
-            return o2.p - o1.p;//o2写在前是升序
+            return o2.p - o1.p;//o2写在前是降序
         }
     }
 
