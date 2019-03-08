@@ -16,6 +16,6 @@ public class PrintAllSubString {
         }
 
         printAllSubString(str, i + 1, res);//不要那个字符串
-        printAllSubString(str, i + 1, res + String.valueOf(str[i]));//要字符串，则和上一个拼接
+        printAllSubString(str, i + 1, res + String.valueOf(str[i]));//要字符串，将当前字符加在整个字符串的后面
     }
 }
