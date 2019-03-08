@@ -29,7 +29,7 @@ public class PosOrderUnRecur {
 
             }
 
-            while (!stack2.isEmpty()) {
+            while (!stack1.isEmpty()) {
                 System.out.println(stack2.pop().val);
             }
         }
