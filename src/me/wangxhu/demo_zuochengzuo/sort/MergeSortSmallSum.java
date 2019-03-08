@@ -40,7 +40,7 @@ public class MergeSortSmallSum {
             int sum = 0;
 
             while (p1 <= mid && p2 <= R) {
-                sum += arr[p1] < arr[p2] ? (R - p2 + 1) * arr[1] : 0;//就是看右边大于左边当前数的个数，即右边比当前数大的个数。(R - p2 + 1)为长度
+                sum += arr[p1] < arr[p2] ? (R - p2 + 1) * arr[p1] : 0;//就是看右边大于左边当前数的个数，即右边比当前数大的个数。(R - p2 + 1)为长度
                 help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
             }
 
