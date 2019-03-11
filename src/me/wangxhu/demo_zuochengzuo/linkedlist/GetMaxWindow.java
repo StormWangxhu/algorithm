@@ -10,27 +10,27 @@ import java.util.LinkedList;
  */
 public class GetMaxWindow {
 
-    public int[] getMaxWindow(int[] arr, int w) {
+    public int[] getMaxWindow(int[] nums, int k) {
 
-        if (arr == null || w < 1 || arr.length < w) {
-            return null;
+        if (nums == null || k < 1 || nums.length < k) {
+            return new int[]{};//return null 在Leetcode上最后一个实例过不去
         }
 
         LinkedList<Integer> pmax = new LinkedList();//双端队列
-        int[] res = new int[arr.length - w + 1];//结果数组
+        int[] res = new int[nums.length - k + 1];//结果数组
         int index = 0;//结果数组中下标
 
-        for (int i = 0; i < arr.length; i++) {
-            while (!pmax.isEmpty() && arr[pmax.peekLast()] <= arr[i]) {
+        for (int i = 0; i < nums.length; i++) {
+            while (!pmax.isEmpty() && nums[pmax.peekLast()] <= nums[i]) {
                 pmax.pollLast();
             }
             pmax.addLast(i);
 
-            if (pmax.peekFirst() == i - w) {
+            if (pmax.peekFirst() == i - k) {
                 pmax.pollFirst();
             }
-            if (i > w - 1) {
-                res[index++] = arr[pmax.pollFirst()];
+            if (i >= k - 1) {
+                res[index++] = nums[pmax.peekFirst()];
             }
         }
         return res;
