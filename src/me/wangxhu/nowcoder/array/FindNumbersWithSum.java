@@ -1,4 +1,4 @@
-package me.wangxhu.nowcoder.linkedlist;
+package me.wangxhu.nowcoder.array;
 
 import java.util.ArrayList;
 
