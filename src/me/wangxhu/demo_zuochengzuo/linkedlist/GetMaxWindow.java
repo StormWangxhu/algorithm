@@ -8,7 +8,16 @@ import java.util.LinkedList;
  * @Email: StormWangxhu@163.com
  * @Description: 生成窗口最大值数组
  */
+
+
+/**
+ * 滑动窗口的最大值
+ * 牛客网
+ *
+ * 21ms
+ */
 public class GetMaxWindow {
+
 
     public int[] getMaxWindow(int[] nums, int k) {
 
