@@ -1,4 +1,4 @@
-package me.wangxhu.demo_zuochengzuo.dp;
+package me.wangxhu.demo_zuochengzuo.array;
 
 /**
  * @Author: StormWangxhu
@@ -6,7 +6,7 @@ package me.wangxhu.demo_zuochengzuo.dp;
  * @Email: StormWangxhu@163.com
  * @Description: 用一张表
  */
-public class ABWinMaxScoreDPII {
+public class ABWinMaxScoreIII {
 
     public static int winMostScore(int[] arr) {
 
