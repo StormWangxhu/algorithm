@@ -33,7 +33,9 @@ public class ABWinMaxScoreDPII {
         }
 
         return Math.max(
+                //i+1...j
                 arr[i] + Math.min(p(arr, i + 2, j), p(arr, i + 1, j - 1)),//A选了最左边的数。对方可能拿剩下最左边和左右中的一个较大，A从剩下中拿一个较小者
+                // i ...j-1
                 arr[j] + Math.min(p(arr, i + 2, j - 1), p(arr, i, j - 2))
         );
     }
