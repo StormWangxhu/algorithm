@@ -28,6 +28,14 @@ public class ABWinMaxScoreII {
             return arr[i];
         }
 
-        return Math.max(arr[i] + f(arr, i + 1, j), arr[j] + f(arr, i, j - 1));
+        return Math.max(arr[i] + s(arr, i + 1, j), arr[j] + s(arr, i, j - 1));
+    }
+
+    private static int s(int[] arr, int i, int j) {
+
+        if (i == j) {
+            return 0;
+        }
+        return Math.max(f(arr, i + 1, j), f(arr, i, j - 1));
     }
 }

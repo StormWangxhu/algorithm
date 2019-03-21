@@ -26,7 +26,7 @@ public class ABWinMaxScore {
             return arr[i];
         }
 
-        return Math.max(arr[i] + f(arr, i + 1, j), arr[j] + f(arr, i, j - 1));
+        return Math.max(arr[i] + s(arr, i + 1, j), arr[j] + s(arr, i, j - 1));
     }
 
     //后拿者
@@ -36,6 +36,6 @@ public class ABWinMaxScore {
             return 0;
         }
 
-        return Math.min(f(arr, i + 1, j), f(arr, i, j - 1));
+        return Math.min(f(arr, i + 1, j), f(arr, i, j - 1));//
     }
 }
