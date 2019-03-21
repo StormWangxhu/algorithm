@@ -25,7 +25,7 @@ public class ABWinMaxScoreII {
     private static int f(int[] arr, int i, int j) {
 
         if (i == j) {
-            return arr[j];
+            return arr[i];
         }
 
         return Math.max(arr[i] + f(arr, i + 1, j), arr[j] + f(arr, i, j - 1));
