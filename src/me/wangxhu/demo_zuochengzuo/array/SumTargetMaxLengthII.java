@@ -1,4 +1,4 @@
-package me.wangxhu.demo_zuochengzuo.array.matrix;
+package me.wangxhu.demo_zuochengzuo.array;
 
 import java.util.HashMap;
 import java.util.Map;
