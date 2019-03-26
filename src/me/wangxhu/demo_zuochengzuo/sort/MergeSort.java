@@ -20,7 +20,7 @@ public class MergeSort {
                 return;
             }
 
-            sortProcess(arr, 0, arr.length);
+            sortProcess(arr, 0, arr.length - 1);
         }
 
         private static void sortProcess(int[] arr, int L, int R) {
@@ -40,7 +40,7 @@ public class MergeSort {
             int[] help = new int[R - L + 1];
             int i = 0;
             int p1 = L;
-            int p2 = mid+1;
+            int p2 = mid + 1;
             while (p1 <= mid && p2 <= R) {
                 help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];//谁小填谁，并往下移动
             }
